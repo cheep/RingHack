@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jp.co.ntt.soft.ringing.hack.sample"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+        <activity
+            android:name="jp.co.ntt.soft.ringing.hack.sample.RingingHackDemo"
+            android:permission="android.permission.CALL_PRIVILEGED"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.CALL_PRIVILEGED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="tel" />
+                <data android:scheme="sip" />
+            </intent-filter>
+        </activity>
+        
+        <receiver
+            android:exported="true"
+            android:name="jp.co.ntt.soft.ringing.hack.sample.CallReceiver">
+            <intent-filter >
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
+                <data android:scheme="tel" />
+                <data android:scheme="sip" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
